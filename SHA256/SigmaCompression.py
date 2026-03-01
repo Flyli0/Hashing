@@ -1,4 +1,4 @@
-from helpers import shr, rotr, mask
+from SHA256.helpers import shr, rotr, mask
 
 
 def big_sigma_0(x):
@@ -12,7 +12,7 @@ def big_sigma_1(x):
 
 
 def small_sigma_0(x):
-    result = rotr(x, 6) ^ rotr(x, 11) ^ shr(x, 3)
+    result = rotr(x, 7) ^ rotr(x, 18) ^ shr(x, 3)
     return result
 
 
