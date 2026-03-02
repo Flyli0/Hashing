@@ -4,6 +4,7 @@ from SHA256.Constants import opad
 from SHA256.Constants import ipad
 from Xor import xor
 
+
 def hmac_sha256(key, message):
 
     if len(key) > BLOCK_SIZE:
