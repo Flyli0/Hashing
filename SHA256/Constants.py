@@ -11,3 +11,11 @@ K = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x9
      0x748F82EE, 0x78A5636F, 0x84C87814, 0x8CC70208, 0x90BEFFFA, 0xA4506CEB, 0xBEF9A3F7, 0xC67178F2]
 # first 32 bits of the fractional parts of the cubic roots of first 64 primes
 
+BLOCK_SIZE = 64
+# size of a block for SHA-256 in bytes
+
+opad = bytes([0x5c] * BLOCK_SIZE)
+# outer padding of bytes type
+
+ipad = bytes([0x36] * BLOCK_SIZE)
+# inner padding of bytes type
