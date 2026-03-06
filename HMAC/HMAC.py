@@ -2,9 +2,11 @@ from SHA256.SecureHashingAlgorithm import sha_256
 from SHA256.Constants import BLOCK_SIZE
 from SHA256.Constants import opad
 from SHA256.Constants import ipad
-from Xor import xor
+from HMAC.Xor import xor
 
 # function that takes a key and a message and returns HMAC
+
+
 def hmac(key: bytes, message: bytes) -> bytes:
 
     if len(key) > BLOCK_SIZE:

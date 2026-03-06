@@ -1,6 +1,6 @@
 def padding(message):
 
-    message = message.encode("utf-8")
+
 
     original_len = len(message) * 8  # to obtain length in bytes
     message = int.from_bytes(message, "big")
@@ -14,4 +14,4 @@ def padding(message):
 
     message = (message << 64) | original_len  # adding message's length in 64 bits big int format
     original_len += 64
-
+    return message
