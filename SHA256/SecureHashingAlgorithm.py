@@ -11,22 +11,17 @@ def sha_256(message):
 
     blocks = []
 
-    while message > 0:
-        blocks.append(message & ((1 << 512) - 1))
-        message >>= 512
-
-    blocks.reverse()
     Hc = H.copy()
     Kc = K.copy()
 
-    for block in blocks:
+    for i in range(0, len(message), 64):
+        block = message[i:i + 64]
         W = [0] * 64
-        for i in range(16):
-            shift = (15 - i) * 32
-            W[i] = (block >> shift) & 0xFFFFFFFF
+        for j in range(16):
+            W[j] = int.from_bytes(block[j * 4:(j + 1) * 4], 'big')
 
-        for i in range(16, 64):
-            W[i] = mask(small_sigma_1(W[i - 2]) + W[i - 7] + small_sigma_0(W[i - 15]) + W[i - 16])
+        for j in range(16, 64):
+            W[j] = mask(small_sigma_1(W[j - 2]) + W[j - 7] + small_sigma_0(W[j - 15]) + W[j - 16])
 
         a = Hc[0]
         b = Hc[1]

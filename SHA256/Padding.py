@@ -1,17 +1,18 @@
-def padding(message):
+def padding(message: bytes) -> bytes:
 
+    if isinstance(message, str):
+        message = message.encode()
 
+    original_len = len(message) * 8
 
-    original_len = len(message) * 8  # to obtain length in bytes
-    message = int.from_bytes(message, "big")
+    # append 0x80 (bit '1' followed by zeros)
+    message += b'\x80'
 
-    message = (message << 1) | 1  # adding '1' bit to the end
-    current_length = original_len + 1
+    # pad zeros until length ≡ 448 (mod 512)
+    while (len(message) * 8) % 512 != 448:
+        message += b'\x00'
 
-    while current_length % 512 != 448:  # padding of other 447 bits with '0's
-        message <<= 1
-        current_length += 1
+    # append 64-bit big-endian length
+    message += original_len.to_bytes(8, 'big')
 
-    message = (message << 64) | original_len  # adding message's length in 64 bits big int format
-    original_len += 64
     return message
