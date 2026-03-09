@@ -14,22 +14,22 @@ class CryptoGUI:
 
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Crypto Toolkit")
+        self.root.title("Hashing Toolkit")
         self.root.geometry("400x300")
 
         tk.Label(self.root,
-                 text="Cryptographic Toolkit",
+                 text="Hashing Toolkit",
                  font=("Arial", 18)).pack(pady=20)
 
         tk.Button(self.root,
-                  text="Encrypt Text / File",
+                  text="Hash Text / File",
                   bg="#42FF1C",
                   font=("Arial", 12, "bold"),
                   width=25,
                   command=self.encrypt_text_file).pack(pady=10)
 
         tk.Button(self.root,
-                  text="Encrypt Password",
+                  text="Hash Password",
                   bg="#FAF25F",
                   font=("Arial", 12, "bold"),
                   width=25,
@@ -44,11 +44,11 @@ class CryptoGUI:
 
         self.root.mainloop()
 
-    # TEXT / FILE ENCRYPTION
+    # TEXT / FILE HASHING
 
     def encrypt_text_file(self):
         window = tk.Toplevel(self.root)
-        window.title("Encrypt Text or File")
+        window.title("Hash Text or File")
         window.geometry("400x300")
 
         tk.Label(window, text="Enter Text").pack()
@@ -69,10 +69,10 @@ class CryptoGUI:
             else:
                 result = sha_512(message)
 
-            messagebox.showinfo("Result", f"Encrypted ({selected_sha}): {result.hex()}")
+            messagebox.showinfo("Result", f"Hashed ({selected_sha}): {result.hex()}")
 
         tk.Button(window,
-                  text="Encrypt",
+                  text="Hash",
                   command=encrypt_action).pack(pady=10)
 
         def open_file():
@@ -93,7 +93,7 @@ class CryptoGUI:
                 if save_path:
                     with open(save_path, "w") as f:
                         f.write(result.hex())
-                messagebox.showinfo("Result", f"File Encrypted ({selected_sha}): {result.hex()}")
+                messagebox.showinfo("Result", f"File Hashed ({selected_sha}): {result.hex()}")
 
         tk.Button(window,
                   text="Choose File",
@@ -103,7 +103,7 @@ class CryptoGUI:
 
     def encrypt_password(self):
         window = tk.Toplevel(self.root)
-        window.title("Password Encryption")
+        window.title("Password Hashing")
         window.geometry("400x250")
 
         tk.Label(window, text="Password").pack()
@@ -132,7 +132,7 @@ class CryptoGUI:
 
 
         tk.Button(window,
-                  text="Encrypt Password",
+                  text="Hash Password",
                   command=encrypt_action).pack(pady=10)
 
     # ============================
